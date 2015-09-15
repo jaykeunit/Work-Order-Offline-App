@@ -1,0 +1,47 @@
+<!doctype html>
+    <html ng-app="publicWorksApp" manifest = "manifest.appcache">
+        <head>
+            <link rel= "stylesheet" href= "./stylesheets/index.css" type= " text/css"/>
+			<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        </head>
+        
+        <body background="images/houstonblackandwhite.jpg" ng-controller="FormController as formController">
+            <img src= "images/houstonSkyline.jpg"></img>
+            <section id= "mainContent">
+                <label id= "workOrderTitle"><h1><b>Work Order</b></h1></label>
+                <form id= "workOrderForm" ng-submit= "formController.verification()">
+                    <label id= "firstNameLabel">First Name</label>
+					<input class="InfoInputField" id= "first" type= "input" name= "firstName" placeholder= "First name" autofocus required tabindex= 1 ng-model="formController.firstName"></input>
+                    <label id= "lastNameLabel">Last Name</label>
+					<input class="InfoInputField" id= "last" type= "input" name= "lastName" placeholder= "Last name" required tabindex= 2 ng-model="formController.lastName"></input>
+                    <label id= workDescriptionLabel>Work Description</label>
+                    <textarea id= "workDescription" class="InfoInputField" type= "text" placeholder= "Enter a work description. Max 300 characters." maxlength= "300" required wrap= "hard"  tabindex=3 ng-model="formController.workDescription"></textarea>
+                    <button id= "getLocationButton" class= "button" type="button" tabindex= 4 ng-click= "formController.requestLocation()" ng-bind="formController.getGeoLocationButton"></button>
+                    <label id= "altitudeLabel" ng-bind = "formController.altLabel"></label>
+                    <input class= "infoInputField" id= "altitude" type= "hidden" name= "altitude" required readonly contenteditable= "false" ng-model="formController.altitude"></input>
+                    <label id= "latitudeLabel" ng-bind = "formController.latLabel"></label>
+					<input class= "infoInputField" id= "latitude" type= "hidden" name= "latitude" required readonly contenteditable= "false" ng-model="formController.latitude"></input>
+                    <label id= "longitudeLabel" ng-bind = "formController.longLabel"></label>
+					<input class= "infoInputField" id= "longitude" type= "hidden" name= "longitude" required readonly content-editable= "false" ng-model="formController.longitude"></input>
+                    <label id= "dateOfServiceLabel">Date of Service</label>
+                    <input id= "datepicker" class="InfoInputField" type= "text" name= "date" placeholder= "mm/dd/yyyy" required tabindex=5 ng-model="formController.date"></input>
+                    <label id= "severityLabel">Severity: </label>
+                    <label class= " radioButtonsLabel">minor</label>
+                    <input class= "radioButtons" id= "minor" type= "radio" name= "radioGroup" checked= "checked" tabindex= 6  ng-model="formController.severity" value = "minor"></input>
+                    <label class= " radioButtonsLabel">major</label>
+                    <input class= "radioButtons" id= "major" type= "radio" name= "radioGroup" required tabindex= 7 ng-model="formController.severity" value = "major"></input>
+                    <label class= " radioButtonsLabel">urgent</label>
+                    <input class= "radioButtons" id= "urgent" type= "radio" name= "radioGroup" required tabindex= 8 ng-model="formController.severity" value = "urgent"></input>
+					<label id= "errorLabel" ng-bind= "formController.errLabel"></label>
+					<input id="formSubmitButton" class= "button" value="Submit"  type="submit" tabindex=9></input>
+                </form>
+				<label id= "pendingSend" ng-bind = "formController.pendingSendLabel" ></label>
+				<button id= "pendingSendButton"  ng-bind = "formController.pendingSendButton" ng-show = "formController.showPendingButton" ng-click= "formController.testConnection()"></button>
+            </section>
+			<footer><p>&copy; Created by: Nestor Gonzalez &  Jake Martinez 2015 All rights reserved.</p></footer>
+        </body>
+		<script src="javascripts/angular/angular.js"></script>
+		<script src="javascripts/formController.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    </html>
